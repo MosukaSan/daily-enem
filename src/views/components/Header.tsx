@@ -13,7 +13,7 @@ function Header({ toggleNav }: HeaderProps): JSX.Element {
 
     return (
         <header className="border-b-3 border-dark-highlight">
-            <nav className="container mx-auto flex justify-between items-center py-7 px-3 text-text">
+            <nav className="container mx-auto flex justify-between items-center py-6 px-4 text-text">
                 <div onClick={() => { navigate('/') }} className="flex items-center justify-center gap-2 hover:cursor-pointer">
                     <h1 className="text-text text-3xl font-bold">Daily</h1>
                     <img src={enemLogo} alt="logo enem" className="h-15" />
