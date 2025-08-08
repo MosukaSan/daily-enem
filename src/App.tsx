@@ -3,6 +3,7 @@ import Header from "./views/components/Header";
 import Question from "./views/Question";
 import { BrowserRouter, Route, Routes } from "react-router";
 import NavBar from "./views/components/NavBar";
+import Footer from "./views/components/Footer";
 
 function App() {
     const [navActive, toggleNav] = useState(false);
@@ -31,6 +32,7 @@ function App() {
                         <Route path="/ciencias-humanas" element={<Question subject="ciencias-humanas"/>}/>
                     </Routes>
                 </div>
+                <Footer />
             </div>
         </BrowserRouter>
     );
