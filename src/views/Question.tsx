@@ -20,8 +20,8 @@ function Question({ subject }: QuestionProps): JSX.Element {
         const chosen = localStorage.getItem('chosen');
 
         if (oldQuestion !== question?.title) {
-            localStorage.setItem(`${subject}-chosen`, 'false');
-            localStorage.setItem(`${subject}-question`, question.title);   
+            localStorage.setItem('chosen', 'false');
+            localStorage.setItem('question', question.title);   
             toggleQuestionChosen(false);
         } else if (chosen === 'true') {
             toggleQuestionChosen(true);
@@ -30,9 +30,9 @@ function Question({ subject }: QuestionProps): JSX.Element {
 
     const chooseQuestion: () => void = function() {
         toggleQuestionChosen(true);
-        localStorage.setItem(`${subject}-chosen`, 'true');
+        localStorage.setItem('chosen', 'true');
         if (question?.title != null) {
-            localStorage.setItem(`${subject}-question`, question.title);   
+            localStorage.setItem('question', question.title);   
         }
     }; 
 
