@@ -80,7 +80,14 @@ function Question({ subject }: QuestionProps): JSX.Element {
                                                 <button onClick={chooseQuestion} className={`flex gap-2 px-5 py-2 rounded cursor-pointer transiton-colors-transform-bg ease-in duration-100 
                                                     ${!questionChosen && 'hover:bg-hover text-justify'} ${changeQuestionBg(alternative.isCorrect)}`}>
                                                     <span className="font-bold">{ alternative.letter + '.' }</span>
-                                                    <ReactMarkdown skipHtml={false}>{alternative.text}</ReactMarkdown>
+                                                    <div className="flex flex-col gap-3">
+                                                        {
+                                                            alternative.text !== null && ( <p>{alternative.text}</p> )
+                                                        }
+                                                        {
+                                                            alternative.file !== null && ( <img src={alternative.file} alt={`alternative ${alternative.letter} image`} /> )
+                                                        }
+                                                    </div>
                                                 </button>
                                             </li>
                                         ))
