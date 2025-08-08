@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { getDailyQuestions } from "../api/getDailyQuestion";
 import type { QuestionObject } from "../types/questionType";
 
-export function useGetDailyQuestions(): { question: QuestionObject, questionLoaded: boolean } {
+export function useGetDailyQuestions(subject: string): { question: QuestionObject, questionLoaded: boolean } {
     const [question, setQuestion] = useState<QuestionObject>(null);
     const [questionLoaded, toggleQuestionLoaded] = useState(false);
 
     useEffect(() => {
         const fetchQuestion = async () => {
-            const questionObject = await getDailyQuestions();
+            const questionObject = await getDailyQuestions(subject);
             
             if (questionObject) {
                 setQuestion(questionObject);
@@ -19,7 +19,7 @@ export function useGetDailyQuestions(): { question: QuestionObject, questionLoad
         };
 
         fetchQuestion();
-    }, []); 
+    }, [subject]); 
 
     return { question: question, questionLoaded: questionLoaded }
 }

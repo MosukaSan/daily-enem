@@ -1,9 +1,13 @@
 import axios from "axios";
 import type { QuestionObject } from "../types/questionType";
 
-export async function getDailyQuestions(): Promise<QuestionObject>  {
+export async function getDailyQuestions(subject: string): Promise<QuestionObject>  {
     try {
-        const response = await axios.get(`/questions/getDailyQuestion`);
+        const response = await axios.get(`/questions/getDailyQuestion`, {
+            params: {
+                subject: subject,
+            }
+        });
         const data: QuestionObject = await response.data;
         return data;
     } catch (err) {

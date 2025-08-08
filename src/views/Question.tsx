@@ -3,8 +3,14 @@ import { useGetDailyQuestions } from "../hooks/useGetDailyQuestion";
 import ReactMarkdown from "react-markdown";
 import Spinner from "./components/Spinner";
 
-function Question(): JSX.Element {
-    const { question, questionLoaded } = useGetDailyQuestions();
+type Subjects = 'geral'| 'matematica' | 'linguagens' | 'ciencias-humanas' | 'ciencias-natureza'
+
+type QuestionProps = {
+    subject: Subjects
+};
+
+function Question({ subject }: QuestionProps): JSX.Element {
+    const { question, questionLoaded } = useGetDailyQuestions(subject);
     const [ questionChosen, toggleQuestionChosen] = useState<boolean>(false);
 
     useEffect(() => {
@@ -13,8 +19,6 @@ function Question(): JSX.Element {
         const oldQuestion = localStorage.getItem('question');
         const chosen = localStorage.getItem('chosen');
 
-        console.log(oldQuestion);
-        console.log(question?.title);
         if (oldQuestion !== question?.title) {
             localStorage.setItem('chosen', 'false');
             localStorage.setItem('question', question.title);   
@@ -50,8 +54,8 @@ function Question(): JSX.Element {
                     question != null && Array.isArray(question?.alternatives)
                         ?
                         (
-                            <div className="flex flex-col gap-1">
-                                <h1 className="text-2xl font-bold">{question.title}</h1>
+                            <section className="flex flex-col gap-1">
+                                <h2 className="text-2xl font-bold">{question.title}</h2>
                                 <h3>&#x2022; {question.discipline}</h3>
                                 <div className="flex flex-col gap-3 mt-3 mb-3 text-justify">
                                     <ReactMarkdown skipHtml={false}>{question.context}</ReactMarkdown>
@@ -72,17 +76,17 @@ function Question(): JSX.Element {
                                         ))
                                     }
                                 </ul>
-                            </div>
+                            </section>
                         )
                         :
                         (
-                            <div className="flex items-center justify-center">Não foi possível carregar a questão.</div>
+                            <section className="flex items-center justify-center">Não foi possível carregar a questão.</section>
                         )
                     :
                     (
-                        <div className="flex h-full w-full justify-center items-center">
+                        <section className="flex h-full w-full justify-center items-center">
                             <Spinner />
-                        </div>
+                        </section>
                     )
             } 
         </div>
