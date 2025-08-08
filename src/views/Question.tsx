@@ -54,33 +54,29 @@ function Question({ subject }: QuestionProps): JSX.Element {
                     question != null && Array.isArray(question?.alternatives)
                         ?
                         (
-                            <div className="flex">
-                                <div></div>
-                                <section className="flex flex-col gap-1">
-                                    <h2 className="text-2xl font-bold">{question.title}</h2>
-                                    <h3>&#x2022; {question.discipline}</h3>
-                                    <div className="flex flex-col gap-3 mt-3 mb-3 text-justify">
-                                        <ReactMarkdown skipHtml={false}>{question.context}</ReactMarkdown>
-                                    </div>
+                            <section className="flex flex-col gap-1">
+                                <h2 className="text-2xl font-bold">{question.title}</h2>
+                                <h3>&#x2022; {question.discipline}</h3>
+                                <div className="flex flex-col gap-3 mt-3 mb-3 text-justify">
+                                    <ReactMarkdown skipHtml={false}>{question.context}</ReactMarkdown>
+                                </div>
 
-                                    <h3 className="text-justify">{question.alternativesIntroduction}</h3>
+                                <h3 className="text-justify">{question.alternativesIntroduction}</h3>
 
-                                    <ul  className="flex flex-col gap-2 mt-3">
-                                        {
-                                            question.alternatives.map((alternative, index: number) => (
-                                                <li key={index}>
-                                                    <button onClick={chooseQuestion} className={`flex gap-2 px-5 py-2 rounded cursor-pointer transiton-colors-transform-bg ease-in duration-100 
-                                                        ${!questionChosen && 'hover:bg-hover text-justify'} ${changeQuestionBg(alternative.isCorrect)}`}>
-                                                        <span className="font-bold">{ alternative.letter + '.' }</span>
-                                                        <ReactMarkdown skipHtml={false}>{alternative.text}</ReactMarkdown>
-                                                    </button>
-                                                </li>
-                                            ))
-                                        }
-                                    </ul>
-                                    <div></div>
-                                </section>
-                            </div>
+                                <ul  className="flex flex-col gap-2 mt-3">
+                                    {
+                                        question.alternatives.map((alternative, index: number) => (
+                                            <li key={index}>
+                                                <button onClick={chooseQuestion} className={`flex gap-2 px-5 py-2 rounded cursor-pointer transiton-colors-transform-bg ease-in duration-100 
+                                                    ${!questionChosen && 'hover:bg-hover text-justify'} ${changeQuestionBg(alternative.isCorrect)}`}>
+                                                    <span className="font-bold">{ alternative.letter + '.' }</span>
+                                                    <ReactMarkdown skipHtml={false}>{alternative.text}</ReactMarkdown>
+                                                </button>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            </section>
                         )
                         :
                         (
