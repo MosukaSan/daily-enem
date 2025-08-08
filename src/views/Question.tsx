@@ -47,7 +47,7 @@ function Question({ subject }: QuestionProps): JSX.Element {
     };
 
     return (
-        <div className="px-8 py-3 text-text w-full h-full">
+        <div className="p-8 text-text w-full h-full">
             {
                 questionLoaded 
                     ?
